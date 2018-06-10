@@ -75,10 +75,13 @@ void crt_aspect_ratio_switch(unsigned width, unsigned height)
 
 static void switch_res_crt(unsigned width, unsigned height)
 {
+   bool result;
    if (height > 100)
    {
-      video_display_server_switch_resolution(width, height,
+      result = video_display_server_switch_resolution(width, height,
             ra_set_core_hz, ra_core_hz);
+      if (!result)
+         result = video_driver_set_video_mode(width, height, true);
       video_driver_apply_state_changes();
    }
 }

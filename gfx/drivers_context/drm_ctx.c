@@ -620,6 +620,11 @@ static bool gfx_ctx_drm_set_video_mode(void *data,
    if (!drm)
       return false;
 
+   RARCH_LOG("[KMS]: Asked to set %ux%u@%f mode\n",
+      width, height, video_info->refresh_rate);
+   RARCH_LOG("[KMS]: (crt_switch_resolution=%u, crt_switch_resolution_super=%u)\n",
+      video_info->crt_switch_resolution, video_info->crt_switch_resolution_super);
+
    frontend_driver_install_signal_handler();
 
    /* If we use black frame insertion,
